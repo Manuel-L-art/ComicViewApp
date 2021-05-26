@@ -1,0 +1,12 @@
+Login and registration page - upon successful completion renders a dashboard page.
+Dashboard page 
+	Feature links to logout, edit password and, if I can figure it out, also change user email
+	Feature a navbar with links to Account, Favorites/bookmarks, inbox - messages and replies from other users, and a recents page.
+	And display the most recent comic book page viewed.
+ComicPageViews Page
+	Main display ComicPage, when clicked will load next ComicPage
+	Tools - will allow users to like/bookmark/favorite, add Comments to author
+	Comments and Replies section - where users can comment and reply to other users
+Login & security Page
+	Will allow users to edit passwords and possibly email.
+	
