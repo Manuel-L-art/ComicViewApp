@@ -1,2 +1,13 @@
 # Ignore Py file named
 secrets.py
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+/static
+.env
+.venv
+env/
+venv/
