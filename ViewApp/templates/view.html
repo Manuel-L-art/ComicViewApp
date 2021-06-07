@@ -55,6 +55,24 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Comments and Replies -->
+                    <div class="align-bottom border border-primary">
+                        <div class="header">
+                            <div id="user-input-comment">
+                                <form action="" method="post">
+                                    <input type="text" name="comments" id="comments" placeholder="Comment here...">
+                                    <button class="hidden"></button>
+                            </div>
+                            <div id="other-users-comments">
+                                {% for comments in message.comments.all %}
+                                    <div>
+                                        <p>{{ user.comment.name }}</p>
+                                        <p>{{ comment.comment }}</p>
+                                        <hr>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                    </div>
                 </div>
             </div>
         </div>
