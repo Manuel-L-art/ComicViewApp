@@ -41,14 +41,8 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     objects = userManager()
 
-class Author(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255, null=True)
-    join_date = models.DateTimeField(auto_fill_now=True)
-    last_updated = models.DateTime()
-    comics = models.ManyToManyField(Comic)
 
 class Comic(models.Model):
     book_title = models.CharField(max_length=255)
-    book_author = models.ManyToManyField(Author)
+    book_author = models.CharField(max_length=255)
     release_date = models.DateTime()

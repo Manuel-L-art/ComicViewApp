@@ -5,11 +5,27 @@
         <title>Settings</title>
     </head>
     <body>
-        <form action="" method="post">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email">
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="email">
+        <div>
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        Error: {{ error }}
+        {% endfor %}
+        {% endfor %}
+        {% endif %}
+        </div>
+        <h3>Change Password:</h3>
+        <form action="edit" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Submit!</button>
         </form>
+        {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
     </body>
 </html>
