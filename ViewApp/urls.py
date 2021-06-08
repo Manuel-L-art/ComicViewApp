@@ -5,5 +5,8 @@ urlpatterns = [
     path('', views.index),
     path('register', views.register),
     path('login', views.login),
-    path(r'^password/$', views.edit),
+    # path('edit', views.edit),
+    
+    # add comments and replies
+    path('add_comment', views.add_comment),
 ]

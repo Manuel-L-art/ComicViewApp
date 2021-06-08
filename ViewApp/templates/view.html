@@ -59,7 +59,8 @@
                     <div class="align-bottom border border-primary">
                         <div class="header">
                             <div id="user-input-comment">
-                                <form action="" method="post">
+                                <form action="add_comment" method="post">
+                                    {% csrf_token %}
                                     <input type="text" name="comments" id="comments" placeholder="Comment here...">
                                     <button class="hidden"></button>
                             </div>

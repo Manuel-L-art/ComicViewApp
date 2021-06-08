@@ -1,9 +1,11 @@
 from django.db import models
 import re
-import bcrpyt
+import bcrypt
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9]+\.[a-zA-Z]+$')
 # Create your models here.
+
 class userManager(models.Manager):
+
     def validator(self, form):
         errors = {}
         if not EMAIL_REGEX.match(form['email']):
@@ -33,6 +35,7 @@ class userManager(models.Manager):
             email = form['email'],
             password = pw,
         )
+
 class User(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -41,8 +44,23 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     objects = userManager()
 
-
 class Comic(models.Model):
     book_title = models.CharField(max_length=255)
     book_author = models.CharField(max_length=255)
-    release_date = models.DateTime()
+    release_date = models.DateTimeField()
+
+class Comment(models.Model):
+    comment = models.TextField()
+    user = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
+    comicpage = models.ForeignKey(Comic,related_name="comicPage", on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_fill_now=True)
+    updated_at = models.DateTimeField(auto_fill=True)
+
+class Reply(models.Model):
+    reply = models.Textfield()
+    user = models.ManyToManyField(Comment, related_name="replies")
+    created_at = models.DateTimeField(auto_fill_now=True)
+    updated_at = models.DateTimeField(auto_fill=True)
+
+
+
