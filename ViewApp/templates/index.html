@@ -12,32 +12,40 @@
         <div class="container">
             <form action="/register" method="post">
             {% csrf_token %}
-            <label for="first_name">First Name:</label>
-            <input type="text" name="first_name" id="first_name">
+                <fieldset>
+                    <legend>Registration Info</legend>
+                    <label for="first_name">First Name:</label>
+                    <input type="text" placeholder="First Name" name="first_name" id="first_name">
 
-            <label for="last_name">Last Name:</label>
-            <input type="text" name="last_name" id="last_name">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" placeholder="Last Name" name="last_name" id="last_name">
 
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email">
+                    <label for="email">Email:</label>
+                    <input type="email" placeholder="Email Here" name="email" id="email">
 
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password">
+                    <label for="password">Password:</label>
+                    <input type="password" placeholder="Password" name="pwd" id="pwd" required>
 
-            <label for="password">Confirm Password:</label>
-            <input type="password" name="confirm" id="confirm">
-            <button>Register Now!</button>
+                    <label for="password">Confirm Password:</label>
+                    <input type="password" placeholder="Password Confirm" name="pwd_confirm" id="pwd_confirm" required>
+                    <button>Register Now!</button>
+                </fieldset>
+            </form>
         </div>
         <div class="container">
             <div>
                 <form action="/login" method="post">
                 {% csrf_token %}
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email">
+                    <fieldset>
+                        <legend>Login Info</legend>
+                        <label for="email">Email:</label>
+                        <input type="email" placeholder="Email Here" name="email" id="email">
 
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password">
-                <button>Login</button>
+                        <label for="password">Password:</label>
+                        <input type="password"  placeholder="Password Here" name="pwd" id="pwd">
+                        <button>Login</button>
+                    </fieldset>
+                </form>
             </div>
             <div>
                 {% if messages %}

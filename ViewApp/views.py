@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash
+# from django.contrib.auth import update_session_auth_hash
 # from django.contrib.auth.forms import PasswordChangeForm
 from .models import *
 
 # Create your views here.
 def index(request):
-    return(request, 'index.html')
+    return render(request, 'index.html')
 
 def register(request):
     errors = User.objects.validator(request.POST)
@@ -15,7 +15,7 @@ def register(request):
             messages.error(request, value)
             return redirect('/')
     else:
-        user = User.ojects.register(request.POST)
+        user = User.objects.register(request.POST)
         request.session['user_id'] = user.id
         messages.success(request, "Successful Registration")
     return render(request, 'dashboard.html')
