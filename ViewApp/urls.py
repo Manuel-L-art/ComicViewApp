@@ -9,4 +9,7 @@ urlpatterns = [
     
     # add comments and replies
     path('add_comment', views.add_comment),
+    path('all_comments', views.allcommies),
+    path('logout', views.logout),
+    path('wip', views.wip),
 ]

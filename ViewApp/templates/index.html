@@ -1,52 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    {% include 'partials/header.html' %}
         <title>Main Page</title>
     </head>
     <body>
         <div class="container">
-            <form action="/register" method="post">
-            {% csrf_token %}
-                <fieldset>
-                    <legend>Registration Info</legend>
-                    <label for="first_name">First Name:</label>
-                    <input type="text" placeholder="First Name" name="first_name" id="first_name">
-
-                    <label for="last_name">Last Name:</label>
-                    <input type="text" placeholder="Last Name" name="last_name" id="last_name">
-
-                    <label for="email">Email:</label>
-                    <input type="email" placeholder="Email Here" name="email" id="email">
-
-                    <label for="password">Password:</label>
-                    <input type="password" placeholder="Password" name="pwd" id="pwd" required>
-
-                    <label for="password">Confirm Password:</label>
-                    <input type="password" placeholder="Password Confirm" name="pwd_confirm" id="pwd_confirm" required>
-                    <button>Register Now!</button>
-                </fieldset>
-            </form>
-        </div>
-        <div class="container">
-            <div>
-                <form action="/login" method="post">
-                {% csrf_token %}
-                    <fieldset>
-                        <legend>Login Info</legend>
-                        <label for="email">Email:</label>
-                        <input type="email" placeholder="Email Here" name="email" id="email">
-
-                        <label for="password">Password:</label>
-                        <input type="password"  placeholder="Password Here" name="pwd" id="pwd">
-                        <button>Login</button>
-                    </fieldset>
-                </form>
-            </div>
+            <div class="row">
+                <div class="col-5">
+                    <form action="/register" method="post">
+                    {% csrf_token %}
+                        <h4>Registration Info</h4>
+                        <div class="col">
+                            <input type="text" placeholder="First Name" name="first_name" id="first_name">
+                        </div>                    
+                        <div class="col">
+                            <input type="text" placeholder="Last Name" name="last_name" id="last_name">
+                        </div>
+                        <div class="col">
+                            <input type="email" placeholder="Email Here" name="email" id="email">                            </div>
+                        <div class="col">
+                            <input type="password" placeholder="Password" name="pwd" id="pwd" required>
+                        </div>
+                        <div class="col">
+                            <input type="password" placeholder="Password Confirm" name="pwd_confirm" id="pwd_confirm" required>
+                        <div class="col">
+                            <button class="btn btn-outline-primary">Register Now!</button>
+                        </div>
+                    </form>
+                    <hr>
+                </div>
+                <div class="col-5">
+                    <form action="/login" method="post">
+                    {% csrf_token %}
+                        <fieldset>
+                            <legend>Login Info</legend>
+                            <div class="col">
+                                <input type="email" placeholder="Email Here" name="email" id="email">
+                            </div>
+                            <div class="col">
+                                <input type="password"  placeholder="Password Here" name="pwd" id="pwd">
+                            </div>
+                            <div class="col">
+                                <button>Login</button>
+                            </div>
+                            
+                        </fieldset>
+                    </form>
+                    <hr>
+                </div>
             <div>
                 {% if messages %}
                 <ul>

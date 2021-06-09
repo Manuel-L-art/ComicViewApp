@@ -21,17 +21,17 @@ def register(request):
     return render(request, 'dashboard.html')
 
 def login(request):
-    if not User.objects.authenticate(request.POST['email'], request.POST['password']):
+    if not User.objects.authenticate(request.POST['email'], request.POST['pwd']):
         messages.error(request, "Email and Password combination does not match records")
         return redirect('/')
-    user = User.objects.filter(email=request.POST['email'])
+    user = User.objects.get(email=request.POST['email'])
     request.session['user_id'] = user.id
     messages.success(request, "Logging in")
     return render(request, 'dashboard.html')
 
 def logout(request):
     request.session.clear()
-    return redirect('')
+    return redirect('/')
 
 # def edit(request):
 #     # user changes password
@@ -58,3 +58,13 @@ def add_comment(request):
         user = user.id
     )
     return redirect('/')
+
+def allcommies(request, user_id):
+    comments = Comment.objects.get(id=user_id)
+    context = {
+        "comments": comments,
+    }
+    return render(request, 'viewcommies.html', context)
+
+def wip(request):
+    return render(request, 'wip.html')

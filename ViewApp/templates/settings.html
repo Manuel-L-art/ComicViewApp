@@ -5,7 +5,9 @@
         <title>Settings</title>
     </head>
     <body>
-        <div>
+    {% include 'partials/navbar.html' %}
+        <!-- Finish this if there is time-->
+        {% comment %} <div>
         {% if form.errors %}
         {% for field in form %}
         {% for error in field.errors %}
@@ -26,6 +28,6 @@
             <li class="{{ message.tags }}">{{ message }}</li>
         {% endfor %}
         </ul>
-        {% endif %}
+        {% endif %} {% endcomment %}
     </body>
 </html>

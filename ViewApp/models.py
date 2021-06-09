@@ -21,12 +21,12 @@ class userManager(models.Manager):
             errors['last_name'] = ("Last name is too short")
         return errors
 
-    def authenticate(self, email, password):
+    def authenticate(self, email, pwd):
         users = self.filter(email=email)
         if not users:
             return False
         user = users[0]
-        return bcrypt.checkpw(password.encode(),user.password.encode())
+        return bcrypt.checkpw(pwd.encode(), user.pwd.encode())
     def register(self, form):
         pw = bcrypt.hashpw(form['pwd'].encode(), bcrypt.gensalt()).decode()
         return self.create(
@@ -36,6 +36,7 @@ class userManager(models.Manager):
             pwd = pw,
         )
 
+
 class User(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -44,22 +45,28 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     objects = userManager()
 
-
 class Comic(models.Model):
     book_title = models.CharField(max_length=255)
     book_author = models.CharField(max_length=255)
     release_date = models.DateTimeField()
+    last_updated = models.DateTimeField(auto_now=True)
+
+class ComicPage(models.Model):
+    Number = models.AutoField()
+    comic = models.ForeignKey(Comic, related_name="page", on_delete=models.CASCADE)
+    uploaded_on = models.DateTimeField(auto_now_fill=True)
+
 
 class Comment(models.Model):
     comment = models.TextField()
     user = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
-    comicpage = models.ForeignKey(Comic,related_name="comicPage", on_delete=models.CASCADE)
+    comicpage = models.ForeignKey(ComicPage, related_name="cpage", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 class Reply(models.Model):
     reply = models.TextField()
-    user = models.ManyToManyField(Comment, related_name="replies")
+    user = models.ForeignKey(Comment, related_name="replies", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

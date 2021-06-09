@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    {% include 'partials/header.html' %}
+        <title>My Comments</title>
+    </head>
+    <body>
+    {% include 'partials/navbar.html' %}
+        <div class="container">
+        {% if comments %}
+            <div class="row">
+                {% for comment in comments %}
+                <li><a href="">{{ comment }}</a></li>
+                {% endfor %}
+            </div>
+        {% endif %}
+        </div>
+    </body>
+</html>

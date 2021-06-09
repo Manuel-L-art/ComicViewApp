@@ -1,53 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-{% include 'partials/header.html' %}
-    <title>Document</title>
-</head>
-<body>
-    <nav class="navbar">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-        </ul>
-    </div>
-    <div>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-    </nav>
-    <div class="row">
-        <div class="container">
-            <ul>
-                <li><a href="edit">Login and Security</a></li>
-                <li><a href="">Settings</a></li>
-                <li><a href="">How-To's</a></li>
-                <li><a href="">Following</a></li>
-                <li><a href="logout">Logout</a></li>
+    <head>
+    {% include 'partials/header.html' %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}" type="text/css">
+        <title>My Account</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="container"
+                <h4>This is a placeholder for something way cooler. Maybe...</h4>
+                {% include 'partials/navbar.html' %}
+                <div class="row">
+                    <div class="col"
+                        <nav class="nav flex-column">
+                            <a class="nav-link" href="wip">Login and Security</a>
+                            <a class="nav-link" href="wip">Settings</a>
+                            <a class="nav-link" href="wip">How-To's</a>
+                            <a class="nav-link" href="wip">Following</a>
+                            <a class="nav-link" href="logout">Logout</a>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h3><a href="recentPage">Continue...</a></h3>
+                        <a href="">
+                            <img src="">
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="container">
-            <h3><a href="recentPage">Continue...</a></h3>
-            <a href="">
-                <img src="">
-            </a>
-        </div>
-    </div>
-</body>
+    </body>
 </html>
