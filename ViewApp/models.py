@@ -48,25 +48,28 @@ class User(models.Model):
 class Comic(models.Model):
     book_title = models.CharField(max_length=255)
     book_author = models.CharField(max_length=255)
+    cover_art = models.FileField(upload_to="comic",null=True)
     release_date = models.DateTimeField()
     last_updated = models.DateTimeField(auto_now=True)
 
 class ComicPage(models.Model):
-    Number = models.AutoField()
-    comic = models.ForeignKey(Comic, related_name="page", on_delete=models.CASCADE)
-    uploaded_on = models.DateTimeField(auto_now_fill=True)
+    page_no = models.IntegerField()
+    comicRef = models.ForeignKey(Comic, related_name="page", on_delete=models.CASCADE)
+    comic_img = models.FileField(upload_to="comic")
+    uploaded_on = models.DateTimeField(auto_now_add=True)
 
 
 class Comment(models.Model):
-    comment = models.TextField()
+    comment = models.TextField(null=True)
     user = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
-    comicpage = models.ForeignKey(ComicPage, related_name="cpage", on_delete=models.CASCADE)
+    pageRef = models.ForeignKey(ComicPage, related_name="pcomment", on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 class Reply(models.Model):
-    reply = models.TextField()
-    user = models.ForeignKey(Comment, related_name="replies", on_delete=models.CASCADE)
+    reply = models.TextField(null=True)
+    user = models.ForeignKey(User, related_name="response", on_delete=models.CASCADE, null=True)
+    commentRef = models.ForeignKey(Comment, related_name="replies", on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

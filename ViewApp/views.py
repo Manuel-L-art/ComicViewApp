@@ -68,3 +68,39 @@ def allcommies(request, user_id):
 
 def wip(request):
     return render(request, 'wip.html')
+
+def submit(request):
+    context = {
+        "comics": Comic.objects.all(),
+    }
+    return render(request, 'submitComPag.html', context)
+
+def createComic(request):
+    com = Comic.objects.create(
+        book_title = request.POST['book_title'],
+        book_author = request.POST['book_author'],
+        cover_art = request.FILES['cover_art'],
+        release_date = request.POST['release_date'],
+    )
+    com.save()
+    return redirect('/')
+
+def submitPage(request):
+    if request.method == 'POST':
+        page = ComicPage.objects.create(
+            page_no = request.POST['page_no'],
+            comic_title = request.POST['comic_title'],
+            comic_img = request.FILES['comic_img'],
+        )
+        page.save()
+    return redirect('/')
+
+def viewComic(request, page_id):
+    comicpage = ComicPage.objects.get(id=page_id)
+    comments = Comment.objects.get(id=page_id)
+    context = {
+        "comicpage": comicpage,
+        "comments": comments,
+        
+    }
+    return render(request, 'view.html', context)

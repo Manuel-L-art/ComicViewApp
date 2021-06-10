@@ -10,16 +10,17 @@
             <div class="row">
                 <!-- Comic Pages -->
                 <div class="col-7">
-                    <img src="" id="toggle_fullscreen" alt="{{ page.description }}">
+                    <a href="/viewComicPage/{{ comicpage.id }}">
+                        <img src="{{ comicpage.comic_img.url }}" id="toggle_fullscreen" alt="{{ comicpage.comicRef.book_title }} Page:{{ comicpage.page_no}}">
+                    </a>
                 </div>
-                <!-- Comic Book Details -->
-                <div class="col-4"
+                <div class="col-4">
+                    <!-- Comic Book Details -->
                     <div class="align-top">
                         <ul>
-                            <li>{{ comic.author.name }}</li>
-                            <li>{{ comic.title }}</li>
-                            <li>{{ comic.pageNo }}</li>
-                            <li>{{ comic.created_at }}</li>
+                            <li>{{ comicpage.page_no }}</li>
+                            <li>{{ comicpage.comicRef.book_title }}</li>
+                            <li>{{ comicpage.uploaded_on }}</li>
                         </ul>
                     </div>
                     <!-- User Tools -->
@@ -61,17 +62,22 @@
                             <div id="user-input-comment">
                                 <form action="add_comment" method="post">
                                     {% csrf_token %}
-                                    <input type="text" name="comments" id="comments" placeholder="Comment here...">
-                                    <button class="hidden"></button>
+                                    <input type="text" name="comment" id="comment" placeholder="Comment here...">
+                                    <button class="btn btn-ouline-success">Comment</button>
+                                </form>
                             </div>
                             <div id="other-users-comments">
-                                {% for comments in message.comments.all %}
+                            {% if comments %}
+                                <div class="messages">
+                                {% for comment in Comment.comment.all %}
                                     <div>
                                         <p>{{ user.comment.name }}</p>
                                         <p>{{ comment.comment }}</p>
                                         <hr>
                                     </div>
                                 {% endfor %}
+                                </div>
+                            {% endif %}
                             </div>
                     </div>
                 </div>

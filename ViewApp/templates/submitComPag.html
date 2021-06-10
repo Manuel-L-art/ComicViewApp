@@ -5,5 +5,48 @@
         <title>Comic Page Submission</title>
     <head>
     <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form action="submitPage" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <h4>Submit Comic Page</h4>
+                        <div class="col">
+                            <input type="text" placeholder="Page Number"name="page_no" id="page_no">
+                        </div>
+                        <div class="col">
+                            <select id="comicRef" name="comicRef">
+                            {% for comic in comics %}
+                                <option value="{{ Comic.id }}">{{ Comic.book_title }}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col">
+                            <input type="file" placeholder="Place Comic Page here" name="comic_img" id="comic_img">
+                        </div>
+                        <button>Submit</button>
+                    </form>
+                </div>
+                <div class="col">
+                    <form action="createComic" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <h4>Create Comic Book</h4>
+                        <div class="col">
+                            <input type="text" placeholder="Comic Book Title"name="book_title" id="book_title">
+                        </div>
+                        <div class="col">
+                            <input type="text" placeholder="Author"name="book_author" id="book_author">
+                        </div>
+                        <div class="col">
+                            <input type="file" placeholder="Insert Cover Art Here"name="cover_art" id="cover_art">
+                        </div>
+                        <div class="col">
+                            <input type="date" placeholder="Select a Release Date"name="release_date" id="release_date">
+                        </div>
+                        <submit>Submit</submit>
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
