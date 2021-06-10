@@ -56,6 +56,7 @@ class ComicPage(models.Model):
     page_no = models.IntegerField()
     comicRef = models.ForeignKey(Comic, related_name="page", on_delete=models.CASCADE)
     comic_img = models.FileField(upload_to="comic")
+    bookmarked = models.ManyToManyField(User, related_name="saved")
     uploaded_on = models.DateTimeField(auto_now_add=True)
 
 
@@ -63,6 +64,7 @@ class Comment(models.Model):
     comment = models.TextField(null=True)
     user = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
     pageRef = models.ForeignKey(ComicPage, related_name="pcomment", on_delete=models.CASCADE, null=True)
+    likes = models.ManyToManyField(User, related_name="liked_comments")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -72,6 +74,5 @@ class Reply(models.Model):
     commentRef = models.ForeignKey(Comment, related_name="replies", on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
 
 

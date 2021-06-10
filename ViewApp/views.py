@@ -18,7 +18,7 @@ def register(request):
         user = User.objects.register(request.POST)
         request.session['user_id'] = user.id
         messages.success(request, "Successful Registration")
-    return render(request, 'dashboard.html')
+    return redirect('/loading')
 
 def login(request):
     if not User.objects.authenticate(request.POST['email'], request.POST['pwd']):
@@ -27,7 +27,14 @@ def login(request):
     user = User.objects.get(email=request.POST['email'])
     request.session['user_id'] = user.id
     messages.success(request, "Logging in")
-    return render(request, 'dashboard.html')
+
+    return redirect('/loading')
+
+def renderDash(request):
+    context = {
+        "comics": Comic.objects.all(),
+    }
+    return render(request, 'dashboard.html', context)
 
 def logout(request):
     request.session.clear()
@@ -83,17 +90,18 @@ def createComic(request):
         release_date = request.POST['release_date'],
     )
     com.save()
-    return redirect('/')
+    return redirect('/submit')
 
 def submitPage(request):
     if request.method == 'POST':
+        comInt = Comic.objects.get(id=request.POST['comicRef'])
         page = ComicPage.objects.create(
             page_no = request.POST['page_no'],
-            comic_title = request.POST['comic_title'],
+            comicRef = comInt,
             comic_img = request.FILES['comic_img'],
         )
         page.save()
-    return redirect('/')
+    return redirect('/submit')
 
 def viewComic(request, page_id):
     comicpage = ComicPage.objects.get(id=page_id)
@@ -104,3 +112,15 @@ def viewComic(request, page_id):
         
     }
     return render(request, 'view.html', context)
+
+def addLikes(request, id):
+    comment_liked = Comment.objects.get(id=id)
+    liked_by = User.objects.get(id=request.session['id'])
+    comment_liked.likes.add(liked_by)
+    return redirect('/')
+
+def bookmark(request,id):
+    comicpage = ComicPage.objects.get(id=id)
+    bookmarkedBy = User.objects.get(id=request.session['id'])
+    comicpage.bookmarked.add(bookmarkedBy)
+    return redirect('/viewComicPage<int:id>')

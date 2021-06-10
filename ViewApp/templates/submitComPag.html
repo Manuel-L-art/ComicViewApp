@@ -5,6 +5,7 @@
         <title>Comic Page Submission</title>
     <head>
     <body>
+    {% include 'partials/navbar.html' %}
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -17,7 +18,7 @@
                         <div class="col">
                             <select id="comicRef" name="comicRef">
                             {% for comic in comics %}
-                                <option value="{{ Comic.id }}">{{ Comic.book_title }}</option>
+                                <option value="{{ comic.id }}">{{ comic.book_title }}</option>
                             {% endfor %}
                             </select>
                         </div>
@@ -43,7 +44,7 @@
                         <div class="col">
                             <input type="date" placeholder="Select a Release Date"name="release_date" id="release_date">
                         </div>
-                        <submit>Submit</submit>
+                        <button>Submit</button>
                     </form>
                 </div>
             </div>

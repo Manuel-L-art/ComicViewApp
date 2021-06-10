@@ -12,6 +12,14 @@
                 <h4>This is a placeholder for something way cooler. Maybe...</h4>
                 {% include 'partials/navbar.html' %}
                 <div class="row">
+                    {{ user.id }}
+                    {% if messages %}
+                    <div>
+                        {% for message in messages %}
+                        <h4 {% if message.tags %} class="{[ message.tags }}"{% endif %}>{{ message }}</h4>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                     <div class="col"
                         <nav class="nav flex-column">
                             <a class="nav-link" href="wip">Login and Security</a>
@@ -22,10 +30,15 @@
                         </ul>
                     </div>
                     <div class="col">
-                        <h3><a href="recentPage">Continue...</a></h3>
-                        <a href="">
-                            <img src="">
-                        </a>
+                        <div>
+                            {% for comic in comics %}
+                            <h3><a href="/viewComicPage/{{ comic.id }}">Continue...</a></h3>
+                            <p><a href="/viewComicPage/{{ comic.id }}">{{ comic.book_title }}</a></p>
+                            <a href="/viewComicPage/{{ comic.id }}">
+                                <img src="{{ comic.cover_art.url }}">
+                            </a>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
