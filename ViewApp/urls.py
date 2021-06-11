@@ -19,5 +19,7 @@ urlpatterns = [
     path('createComic', views.createComic),
     path('viewComicPage/<int:page_id>', views.viewComic),
     path('add_like/<int:id>', views.addLikes),
-    path('bookmark/<int:id>', views.bookmark),
+    # path('bookmark/<int:id>', views.bookmark),
+    path('delete', views.delete),
+    path('deleteCom/<int:id>', views.deleteCom),
 ]

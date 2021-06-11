@@ -119,8 +119,19 @@ def addLikes(request, id):
     comment_liked.likes.add(liked_by)
     return redirect('/')
 
-def bookmark(request,id):
-    comicpage = ComicPage.objects.get(id=id)
-    bookmarkedBy = User.objects.get(id=request.session['id'])
-    comicpage.bookmarked.add(bookmarkedBy)
-    return redirect('/viewComicPage<int:id>')
+# def bookmark(request,id):
+#     comicpage = ComicPage.objects.get(id=id)
+#     bookmarkedBy = User.objects.get(id=request.session['id'])
+#     comicpage.bookmarked.add(bookmarkedBy)
+#     return redirect('/viewComicPage<int:id>')
+
+def delete(request):
+    context = {
+        "comics": Comic.objects.all()
+    }
+    return render(request, 'delete.html', context)
+
+def deleteCom(request, id):
+    com = Comic.objects.get(id=id)
+    com.delete()
+    return redirect('/delete')

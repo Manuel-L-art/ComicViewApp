@@ -56,7 +56,7 @@ class ComicPage(models.Model):
     page_no = models.IntegerField()
     comicRef = models.ForeignKey(Comic, related_name="page", on_delete=models.CASCADE)
     comic_img = models.FileField(upload_to="comic")
-    bookmarked = models.ManyToManyField(User, related_name="saved")
+    # bookmarked = models.ManyToManyField(User, related_name="saved")
     uploaded_on = models.DateTimeField(auto_now_add=True)
 
 

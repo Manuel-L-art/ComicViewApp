@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    {% include 'partials/header.html' %}
+        <title>Deleting stuff</title>
+    </head>
+    <body>
+    {% include 'partials/navbar.html' %}
+        <div>
+            <div>
+                {% for comic in comics %}
+                    <p><a href="deleteCom/{{ comic.id }}"> Delete: {{ comic.book_title }}</a></p>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

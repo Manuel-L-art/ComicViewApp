@@ -22,7 +22,7 @@
                     {% endif %}
                     <div class="col"
                         <nav class="nav flex-column">
-                            <a class="nav-link" href="wip">Login and Security</a>
+                            <a class="nav-link" href="delete">Delete a Comic Book</a>
                             <a class="nav-link" href="wip">Settings</a>
                             <a class="nav-link" href="wip">How-To's</a>
                             <a class="nav-link" href="wip">Following</a>
@@ -32,7 +32,6 @@
                     <div class="col">
                         <div>
                             {% for comic in comics %}
-                            <h3><a href="/viewComicPage/{{ comic.id }}">Continue...</a></h3>
                             <p><a href="/viewComicPage/{{ comic.id }}">{{ comic.book_title }}</a></p>
                             <a href="/viewComicPage/{{ comic.id }}">
                                 <img src="{{ comic.cover_art.url }}">
