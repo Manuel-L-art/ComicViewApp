@@ -8,29 +8,28 @@
     </head>
     <body>
         <div class="container-fluid">
-            <div class="container"
+            <div class="container "
                 <h4>This is a placeholder for something way cooler. Maybe...</h4>
                 {% include 'partials/navbar.html' %}
-                <div class="row">
-                    {{ user.id }}
                     {% if messages %}
-                    <div>
+                    <div class="text-light">
                         {% for message in messages %}
-                        <h4 {% if message.tags %} class="{[ message.tags }}"{% endif %}>{{ message }}</h4>
+                        <h4 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h4>
                         {% endfor %}
                     </div>
                     {% endif %}
-                    <div class="col"
-                        <nav class="nav flex-column">
-                            <a class="nav-link" href="delete">Delete a Comic Book</a>
-                            <a class="nav-link" href="wip">Settings</a>
-                            <a class="nav-link" href="wip">How-To's</a>
-                            <a class="nav-link" href="wip">Following</a>
-                            <a class="nav-link" href="logout">Logout</a>
+                <div class="row">
+                    <div class="col border rounded-sm">
+                        <nav class="nav flex-column ">
+                            <a class="nav-link alert-danger alert" href="delete">Delete a Comic Book</a>
+                            <a class="nav-link alert-secondary alert" href="wip">Settings</a>
+                            <a class="nav-link alert-secondary alert" href="wip">How-To's</a>
+                            <a class="nav-link alert-secondary alert" href="wip">Following</a>
+                            <a class="nav-link alert-primary alert" href="logout">Logout</a>
                         </ul>
                     </div>
                     <div class="col">
-                        <div>
+                        <div class="border rounded-sm">
                             {% for comic in comics %}
                             <p><a href="/viewComicPage/{{ comic.id }}">{{ comic.book_title }}</a></p>
                             <a href="/viewComicPage/{{ comic.id }}">

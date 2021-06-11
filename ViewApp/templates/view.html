@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-4">
                     <!-- Comic Book Details -->
-                    <div class="align-top">
+                    <div class="align-top text-light">
                         <ul>
                             <li>Page: {{ comicpage.page_no }}</li>
                             <li>{{ comicpage.comicRef.book_title }}</li>
@@ -64,12 +64,12 @@
                                     {% csrf_token %}
                                     <input type="text" name="comment" id="comment" placeholder="Comment here...">
                                     <input type="text" name="name" id="name" placeholder="Your Name Here">
-                                    <button class="btn btn-ouline-success">Comment</button>
+                                    <button class="btn btn-success">Comment</button>
                                 </form>
                             </div>
                             <div id="other-users-comments">
                             {% if comments %}
-                                <div class="messages">
+                                <div class="messages text-light">
                                 {% for comment in comments %}
                                     <div>
                                         <p>{{ comment.comment }}</p><p><a href="add_like/{{comment.id}}">Like</a></p>

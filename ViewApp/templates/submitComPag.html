@@ -8,14 +8,15 @@
     {% include 'partials/navbar.html' %}
         <div class="container">
             <div class="row">
-                <div class="col">
+                <div class="col border rounded-sm text-light">
                     <form action="submitPage" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                        <h4>Submit Comic Page</h4>
+                        <h4 class="text-light">Submit Comic Page</h4>
                         <div class="col">
                             <input type="text" placeholder="Page Number"name="page_no" id="page_no">
                         </div>
                         <div class="col">
+                            <label for="comicRef">Select a Comic Book</label>
                             <select id="comicRef" name="comicRef">
                             {% for comic in comics %}
                                 <option value="{{ comic.id }}">{{ comic.book_title }}</option>
@@ -23,15 +24,16 @@
                             </select>
                         </div>
                         <div class="col">
+                            <label for="comic_img">Upload Comic Page</label>
                             <input type="file" placeholder="Place Comic Page here" name="comic_img" id="comic_img">
                         </div>
-                        <button>Submit</button>
+                        <button class="btn btn-primary">Submit</button>
                     </form>
                 </div>
-                <div class="col">
+                <div class="col border rounded-sm text-light">
                     <form action="createComic" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                        <h4>Create Comic Book</h4>
+                        <h4 class="text-light">Create Comic Book</h4>
                         <div class="col">
                             <input type="text" placeholder="Comic Book Title"name="book_title" id="book_title">
                         </div>
@@ -39,12 +41,14 @@
                             <input type="text" placeholder="Author"name="book_author" id="book_author">
                         </div>
                         <div class="col">
+                            <label for="cover_art">Insert Cover Art Here</label><br>
                             <input type="file" placeholder="Insert Cover Art Here"name="cover_art" id="cover_art">
                         </div>
                         <div class="col">
+                            <label for="release_date">Select a Release Date</label>
                             <input type="date" placeholder="Select a Release Date"name="release_date" id="release_date">
                         </div>
-                        <button>Submit</button>
+                        <button class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>

@@ -7,15 +7,19 @@
     <body>
     {% include 'partials/navbar.html' %}
         <div class="container">
-        {% if comments %}
             <div class="row">
-                {% for comment in comments %}
-                <p>{{ comment.comment }}</p>
-                <p>{{ comment.comRef }}</p>
-                <hr>
-                {% endfor %}
+            {% if comments %}
+                <div class="col">
+                    {% for comment in comments %}
+                    <div class="text-light border rounded-sm">
+                        <p>"{{ comment.comment }}"</p>
+                        <p>By: {{ comment.name }}</p>
+                        <hr>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
             </div>
-        {% endif %}
         </div>
     </body>
 </html>
