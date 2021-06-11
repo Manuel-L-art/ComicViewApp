@@ -10,7 +10,9 @@
         {% if comments %}
             <div class="row">
                 {% for comment in comments %}
-                <li><a href="">{{ comment }}</a></li>
+                <p>{{ comment.comment }}</p>
+                <p>{{ comment.comRef }}</p>
+                <hr>
                 {% endfor %}
             </div>
         {% endif %}

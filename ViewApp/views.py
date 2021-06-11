@@ -58,16 +58,17 @@ def logout(request):
 #         })
 #     return redirect('/')
 
-def add_comment(request):
-    user = request.user
-    Comment.objects.create(
-        comment = request.POST['comments'],
-        user = user.id
+def add_comment(request, id):
+    comment = Comment.objects.create(
+        comment = request.POST['comment'],
+        name = request.POST['name'],
+        pageRef = ComicPage.objects.get(id=id)
     )
-    return redirect('/')
+    comment.save()
+    return redirect(f'/viewComicPage/{ id }')
 
-def allcommies(request, user_id):
-    comments = Comment.objects.get(id=user_id)
+def allcommies(request):
+    comments = Comment.objects.all()
     context = {
         "comments": comments,
     }
@@ -103,13 +104,12 @@ def submitPage(request):
         page.save()
     return redirect('/submit')
 
-def viewComic(request, page_id):
-    comicpage = ComicPage.objects.get(id=page_id)
-    comments = Comment.objects.get(id=page_id)
+def viewComic(request, id):
+    comicpage = ComicPage.objects.get(id=id)
+    comments = Comment.objects.filter(pageRef=id)
     context = {
         "comicpage": comicpage,
         "comments": comments,
-        
     }
     return render(request, 'view.html', context)
 
@@ -135,3 +135,7 @@ def deleteCom(request, id):
     com = Comic.objects.get(id=id)
     com.delete()
     return redirect('/delete')
+
+def nextPage(request, id):
+    x = id+1
+    return redirect(f'/viewComicPage/{x}')

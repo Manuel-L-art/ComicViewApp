@@ -6,7 +6,7 @@
     </head>
     <body>
     {% include 'partials/navbar.html' %}
-        <div>
+        <div class="container">
             <div>
                 {% for comic in comics %}
                     <p><a href="deleteCom/{{ comic.id }}"> Delete: {{ comic.book_title }}</a></p>

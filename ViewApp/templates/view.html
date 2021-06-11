@@ -10,7 +10,7 @@
             <div class="row">
                 <!-- Comic Pages -->
                 <div class="col-7">
-                    <a href="/viewComicPage/{{ comicpage.id }}">
+                    <a href="/next_page/{{ comicpage.id }}">
                         <img src="{{ comicpage.comic_img.url }}" id="toggle_fullscreen" alt="{{ comicpage.comicRef.book_title }} Page:{{ comicpage.page_no}}">
                     </a>
                 </div>
@@ -18,9 +18,9 @@
                     <!-- Comic Book Details -->
                     <div class="align-top">
                         <ul>
-                            <li>{{ comicpage.page_no }}</li>
+                            <li>Page: {{ comicpage.page_no }}</li>
                             <li>{{ comicpage.comicRef.book_title }}</li>
-                            <li>{{ comicpage.uploaded_on }}</li>
+                            <li>Uploaded On:{{ comicpage.uploaded_on }}</li>
                         </ul>
                     </div>
                     <!-- User Tools -->
@@ -60,9 +60,10 @@
                     <div class="align-bottom border border-primary">
                         <div class="header">
                             <div id="user-input-comment">
-                                <form action="add_comment" method="post">
+                                <form action="/add_comment/{{ comicpage.id}}" method="post">
                                     {% csrf_token %}
                                     <input type="text" name="comment" id="comment" placeholder="Comment here...">
+                                    <input type="text" name="name" id="name" placeholder="Your Name Here">
                                     <button class="btn btn-ouline-success">Comment</button>
                                 </form>
                             </div>
@@ -72,7 +73,7 @@
                                 {% for comment in comments %}
                                     <div>
                                         <p>{{ comment.comment }}</p><p><a href="add_like/{{comment.id}}">Like</a></p>
-                                        <p>By: {{ comment.user.first_name }}</p>
+                                        <p>By: {{ comment.name }}</p>
                                         <p><em>{{ comment.user.created_at }}</em></p>
                                         <hr>
                                     </div>

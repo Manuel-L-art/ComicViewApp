@@ -62,7 +62,7 @@ class ComicPage(models.Model):
 
 class Comment(models.Model):
     comment = models.TextField(null=True)
-    user = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, null=True)
     pageRef = models.ForeignKey(ComicPage, related_name="pcomment", on_delete=models.CASCADE, null=True)
     likes = models.ManyToManyField(User, related_name="liked_comments")
     created_at = models.DateTimeField(auto_now_add=True)
