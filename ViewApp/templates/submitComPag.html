@@ -19,7 +19,7 @@
                             <label for="comicRef">Select a Comic Book</label>
                             <select id="comicRef" name="comicRef">
                             {% for comic in comics %}
-                                <option value="{{ comic.id }}">{{ comic.book_title }}</option>
+                                <option value="{{ comic.id }}">{{ comic.book_title }}{{comic.author}}</option>
                             {% endfor %}
                             </select>
                         </div>

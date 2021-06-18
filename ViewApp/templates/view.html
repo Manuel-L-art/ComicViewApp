@@ -10,7 +10,7 @@
             <div class="row">
                 <!-- Comic Pages -->
                 <div class="col-7">
-                    <a href="/next_page/{{ comicpage.id }}">
+                    <a href="/next_page/{{comicpage.comicRef.book_title}}/{{ comicpage.page_no }}">
                         <img src="{{ comicpage.comic_img.url }}" id="toggle_fullscreen" alt="{{ comicpage.comicRef.book_title }} Page:{{ comicpage.page_no}}">
                     </a>
                 </div>
@@ -25,8 +25,8 @@
                     </div>
                     <!-- User Tools -->
                     <div class="align-middle border border-danger">
-                        <div class="menu-container">
-                            <div id="bookmark_button">
+                        <div class="menu-container d-flex flex-row">
+                            <div class="p-2" id="bookmark_button">
                                 <a href="bookmark">
                                     <button>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-heart" viewBox="0 0 16 16">
@@ -36,7 +36,7 @@
                                     </button>
                                 </a>
                             </div>
-                            <div id="like_button">
+                            <div class="p-2" id="like_button">
                                 <a href="wip">
                                     <button>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
@@ -45,7 +45,7 @@
                                     </button>
                                 </a>
                             </div>
-                            <div id="fullscreen_button">
+                            <div class="p-2" id="fullscreen_button">
                                 <a href="#" id="toggle-fullscreen">
                                     <button>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
@@ -69,11 +69,12 @@
                             </div>
                             <div id="other-users-comments">
                             {% if comments %}
-                                <div class="messages text-light">
+                                <div class="messages text-dark">
                                 {% for comment in comments %}
                                     <div>
-                                        <p>{{ comment.comment }}</p><p><a href="add_like/{{comment.id}}">Like</a></p>
-                                        <p>By: {{ comment.name }}</p>
+                                        <p><strong>{{ comment.comment }}</strong></p>
+                                        <p><a href="add_like/{{comment.id}}">Like</a></p>
+                                        <p>By: <em>{{ comment.name }}</em></p>
                                         <p><em>{{ comment.user.created_at }}</em></p>
                                         <hr>
                                     </div>

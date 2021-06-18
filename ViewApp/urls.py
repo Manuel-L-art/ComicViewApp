@@ -22,6 +22,7 @@ urlpatterns = [
     # path('bookmark/<int:id>', views.bookmark),
     path('delete', views.delete),
     path('deleteCom/<int:id>', views.deleteCom),
-    path('next_page/<int:id>', views.nextPage),
-    path('deletepage/<str:book_title>/<int:page_no>', views.deletePage),
+    path('next_page/<str:book_title>/<int:page_no>', views.nextPage),
+    path('deletepage', views.deletePage),
+    path('selectpages', views.selectpage),
 ]

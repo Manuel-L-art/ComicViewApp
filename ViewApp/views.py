@@ -149,13 +149,24 @@ def deleteCom(request, id):
     com.delete()
     return redirect('/delete')
 
-def deletePage(request, book_title, page_no):
-    comicpage = ComicPage.objects.get(
-        comicRef = Comic.objects.get(book_title=book_title),
-        page_no=page_no
-    )
+def deletePage(request):
+    comic_id = request.POST.get('comic_id', False)
+    comic  = Comic.objects.get(id=comic_id)
+    pages = comic.page.all()
+    context = {
+        "pages":pages,
+        "comics": Comic.objects.all()
+    }
+    return render(request, 'delete.html', context)
+
+def selectpage(request):
+    page_id = request.POST.get('page_id', False)
+    if page_id == False:
+        return redirect('/delete')
+    comicpage = ComicPage.objects.get(id=page_id)
     comicpage.delete()
     return redirect('/delete')
 
-def nextPage(request):
-    return 
+def nextPage(request, book_title, page_no):
+    page_no = page_no + 1
+    return redirect(f'/viewpage/{book_title}/{page_no}')

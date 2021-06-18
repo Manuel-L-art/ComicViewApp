@@ -15,21 +15,32 @@
             </div>
         </div>
         <div class="container">
-            <form action="deletepage/{{ book_title }}/{{ page_no }}" method="POST">
-            {% csrf_token %}
-                <label for="book_title">Select a Comic Book Page</label>
-                <select id="book_title" name="book_title">
-                {% for comic in comics %}
-                    <option value="{{ comicpage.comicRef.book_title }}">{{ comicpage.comicRef.book_title }}</option>
-                {% endfor %}
-                </select>
-                <select id="page_no" name="page_no">
-                {% for comicpage in pages %}
-                    <option value="{{ comicpage.page_no}}">{{ comicpage.page_no }}</option>
-                {% endfor %}
-                </select>
-                <button class="btn btn-primary">Delete</button>
-            </form>
+            <div>
+                <form action="deletepage" method="POST">
+                {% csrf_token %}
+                    <label for="comic_id">First select a book:</label>
+                    <select id="comic_id" name="comic_id">
+                    {% for comic in comics %}
+                        <option value="{{ comic.id }}">{{ comic.book_title }}</option>
+                    {% endfor %}
+                    </select>
+                    <button class="btn btn-warning">Select</button>
+                </form>
+            </div>
+            {% if pages %}
+            <div>
+                <form action="selectpages" method="POST">
+                {% csrf_token %}
+                    <h3>{{ pages.comicRef.book_title }}</h3>
+                    {% for page in pages %}
+                    <label for="page_id">{{ page.page_no }}</label>
+                    <input type="checkbox" value="{{ page.id }}" id="page_id" name="page_id">
+                    {% endfor %}
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+            {% endif %}
         </div>
+
     </body>
 </html>
