@@ -186,3 +186,8 @@ def editProfile(request):
         "user": user,
     }
     return render(request, 'profile.html', context)
+
+def deleteComment(request, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    comment.delete()
+    return redirect('/all_comments')

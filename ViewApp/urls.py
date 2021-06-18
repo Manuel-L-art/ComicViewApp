@@ -27,4 +27,5 @@ urlpatterns = [
     path('selectpages', views.selectpage),
     path('editpage', views.editpage),
     path('editProfile', views.editProfile),
+    path('deleteComment/<int:comment_id>', views.deleteComment),
 ]

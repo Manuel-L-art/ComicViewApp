@@ -14,6 +14,9 @@
                     <div class="text-dark border rounded-sm p-2">
                         <p><strong>"{{ comment.comment }}"</strong></p>
                         <p>By: <em>{{ comment.name }}</em></p>
+                        <a href="deleteComment/{{comment.id}}">
+                            <button class="btn btn-danger">Delete</button>
+                        </a>
                         <hr>
                     </div>
                     {% endfor %}
