@@ -22,21 +22,30 @@
                     <div class="col border rounded-sm">
                         <nav class="nav flex-column ">
                             <a class="nav-link alert-danger alert" href="delete">Delete a Comic Book</a>
-                            <a class="nav-link alert-secondary alert" href="wip">Settings</a>
-                            <a class="nav-link alert-secondary alert" href="wip">How-To's</a>
-                            <a class="nav-link alert-secondary alert" href="wip">Following</a>
+                            <a class="nav-link alert-secondary alert" href="#">Settings</a>
+                            <a class="nav-link alert-secondary alert" href="#">How-To's</a>
+                            <a class="nav-link alert-secondary alert" href="#">Following</a>
                             <a class="nav-link alert-primary alert" href="logout">Logout</a>
                         </ul>
                     </div>
                     <div class="col">
+                        {% if comics %}
                         <div class="border rounded-sm">
                             {% for comic in comics %}
-                            <p><a href="/viewComicPage/{{ comic.id }}">{{ comic.book_title }}</a></p>
-                            <a href="/viewComicPage/{{ comic.id }}">
+                            <h3><a href="viewpage/{{ comic.book_title }}/1">{{ comic.book_title }}</a></h3>
+                            <a href="viewpage/{{ comic.book_title }}/1">
                                 <img src="{{ comic.cover_art.url }}">
                             </a>
+                                <div>
+                                {% for page in pages %}
+                                    <a href="viewpage/{{ comic.id }}/{{ page.page_no }}">
+                                        <button class="btn btn-outline-primary">Page:{{ page.page_no }}</button>
+                                    </a>
+                                {% endfor %}
+                                </div>
                             {% endfor %}
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

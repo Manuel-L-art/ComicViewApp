@@ -31,8 +31,12 @@ def login(request):
     return redirect('/loading')
 
 def renderDash(request):
+    comics = Comic.objects.all()
     context = {
-        "comics": Comic.objects.all(),
+        "comics": comics,
+        # "pages": Comic.page.filter(
+        #     comRef = comics.id
+        # ),
     }
     return render(request, 'dashboard.html', context)
 
@@ -58,14 +62,18 @@ def logout(request):
 #         })
 #     return redirect('/')
 
-def add_comment(request, id):
+def add_comment(request, book_title, page_no):
+    comicpage = ComicPage.objects.get(
+        comicRef = Comic.objects.get(book_title = book_title),
+        page_no=page_no
+    )
     comment = Comment.objects.create(
         comment = request.POST['comment'],
         name = request.POST['name'],
-        pageRef = ComicPage.objects.get(id=id)
+        pageRef = ComicPage.objects.get(id=comicpage.id)
     )
     comment.save()
-    return redirect(f'/viewComicPage/{ id }')
+    return redirect(f'/viewpage/{ book_title }/{page_no}')
 
 def allcommies(request):
     comments = Comment.objects.all()
@@ -104,9 +112,13 @@ def submitPage(request):
         page.save()
     return redirect('/submit')
 
-def viewComic(request, id):
-    comicpage = ComicPage.objects.get(id=id)
-    comments = Comment.objects.filter(pageRef=id)
+def viewPage(request, book_title, page_no):
+    comicpage = ComicPage.objects.get(
+        comicRef = Comic.objects.get(book_title=book_title),
+        page_no=page_no,
+    )
+    
+    comments = comicpage.pcomment.all()
     context = {
         "comicpage": comicpage,
         "comments": comments,
@@ -126,8 +138,9 @@ def addLikes(request, id):
 #     return redirect('/viewComicPage<int:id>')
 
 def delete(request):
+    comics = Comic.objects.all()
     context = {
-        "comics": Comic.objects.all()
+        "comics": comics,
     }
     return render(request, 'delete.html', context)
 
@@ -136,6 +149,13 @@ def deleteCom(request, id):
     com.delete()
     return redirect('/delete')
 
-def nextPage(request, id):
-    x = id+1
-    return redirect(f'/viewComicPage/{x}')
+def deletePage(request, book_title, page_no):
+    comicpage = ComicPage.objects.get(
+        comicRef = Comic.objects.get(book_title=book_title),
+        page_no=page_no
+    )
+    comicpage.delete()
+    return redirect('/delete')
+
+def nextPage(request):
+    return 

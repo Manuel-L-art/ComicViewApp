@@ -8,10 +8,28 @@
     {% include 'partials/navbar.html' %}
         <div class="container">
             <div class="alert-danger alert">
+                <h4>Delete Comic Book</h4>
                 {% for comic in comics %}
-                    <p><a href="deleteCom/{{ comic.id }}"> Delete: {{ comic.book_title }}</a></p>
+                    <a href="deleteCom/{{ comic.id }}"><button class="btn btn-warning"> {{ comic.book_title }}</button></a>
                 {% endfor %}
             </div>
+        </div>
+        <div class="container">
+            <form action="deletepage/{{ book_title }}/{{ page_no }}" method="POST">
+            {% csrf_token %}
+                <label for="book_title">Select a Comic Book Page</label>
+                <select id="book_title" name="book_title">
+                {% for comic in comics %}
+                    <option value="{{ comicpage.comicRef.book_title }}">{{ comicpage.comicRef.book_title }}</option>
+                {% endfor %}
+                </select>
+                <select id="page_no" name="page_no">
+                {% for comicpage in pages %}
+                    <option value="{{ comicpage.page_no}}">{{ comicpage.page_no }}</option>
+                {% endfor %}
+                </select>
+                <button class="btn btn-primary">Delete</button>
+            </form>
         </div>
     </body>
 </html>
