@@ -11,9 +11,9 @@
             {% if comments %}
                 <div class="col">
                     {% for comment in comments %}
-                    <div class="text-light border rounded-sm">
-                        <p>"{{ comment.comment }}"</p>
-                        <p>By: {{ comment.name }}</p>
+                    <div class="text-dark border rounded-sm">
+                        <p><strong>"{{ comment.comment }}"</strong></p>
+                        <p>By: <em>{{ comment.name }}</em></p>
                         <hr>
                     </div>
                     {% endfor %}

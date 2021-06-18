@@ -25,4 +25,6 @@ urlpatterns = [
     path('next_page/<str:book_title>/<int:page_no>', views.nextPage),
     path('deletepage', views.deletePage),
     path('selectpages', views.selectpage),
+    path('editpage', views.editpage),
+    path('editProfile', views.editProfile),
 ]

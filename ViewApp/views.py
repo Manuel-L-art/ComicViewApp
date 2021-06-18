@@ -170,3 +170,19 @@ def selectpage(request):
 def nextPage(request, book_title, page_no):
     page_no = page_no + 1
     return redirect(f'/viewpage/{book_title}/{page_no}')
+
+def editpage(request):
+    return render(request, 'profile.html')
+
+def editProfile(request):
+    fname = request.POST.get('fname', False)
+    if fname == False:
+        return redirect('/editpage')
+    user = User.objects.get(first_name=fname)
+    user.fname = request.POST['fname']
+    user.lname = request.POST['lname']
+    user.save()
+    context = {
+        "user": user,
+    }
+    return render(request, 'profile.html', context)

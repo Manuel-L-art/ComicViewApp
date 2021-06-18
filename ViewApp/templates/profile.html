@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    {% include 'partials/header.html' %}
+        <title>User Profile</title>
+    </head>
+    <body>
+    {% include 'partials/navbar.html' %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form action="editProfile" method="POST">
+                    {% csrf_token %}
+                        <legend>My Info:</legend>
+                        <h3>Only First Name and Last Name can be altered</h3>
+                        <h5>Please insert First Name</h5>
+                        <input type="text" id="fname" name="fname" placeholder="{{ user.first_name }}">
+                        <input type="text" id="lname" name="lname" placeholder="{{user.last_name}}">
+                        <input type="email" id="email" name="email" placeholder="{{ user.email }}" disabled>
+                        <button class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
