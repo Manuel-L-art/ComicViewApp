@@ -179,8 +179,8 @@ def editProfile(request):
     if fname == False:
         return redirect('/editpage')
     user = User.objects.get(first_name=fname)
-    user.fname = request.POST['fname']
-    user.lname = request.POST['lname']
+    user.first_name = request.POST['fname']
+    user.last_name = request.POST['lname']
     user.save()
     context = {
         "user": user,

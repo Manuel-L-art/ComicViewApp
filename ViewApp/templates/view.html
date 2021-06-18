@@ -7,9 +7,9 @@
     <body>
         {% include 'partials/navbar.html' %}
         <div class="container">
-            <div class="row">
+            <div class="row p-3">
                 <!-- Comic Pages -->
-                <div class="col-7">
+                <div class="col-7 p-3">
                     <a href="/next_page/{{comicpage.comicRef.book_title}}/{{ comicpage.page_no }}">
                         <img src="{{ comicpage.comic_img.url }}" id="toggle_fullscreen" alt="{{ comicpage.comicRef.book_title }} Page:{{ comicpage.page_no}}">
                     </a>

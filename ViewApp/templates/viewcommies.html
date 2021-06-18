@@ -9,9 +9,9 @@
         <div class="container">
             <div class="row">
             {% if comments %}
-                <div class="col">
+                <div class="col p-2 mr-2">
                     {% for comment in comments %}
-                    <div class="text-dark border rounded-sm">
+                    <div class="text-dark border rounded-sm p-2">
                         <p><strong>"{{ comment.comment }}"</strong></p>
                         <p>By: <em>{{ comment.name }}</em></p>
                         <hr>

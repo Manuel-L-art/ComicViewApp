@@ -6,7 +6,7 @@
     </head>
     <body>
     {% include 'partials/navbar.html' %}
-        <div class="container">
+        <div class="container p-2">
             <div class="alert-danger alert">
                 <h4>Delete Comic Book</h4>
                 {% for comic in comics %}
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="container">
-            <div>
+            <div class="border rounded-sm p-2 pb-4">
                 <form action="deletepage" method="POST">
                 {% csrf_token %}
                     <label for="comic_id">First select a book:</label>
@@ -28,7 +28,7 @@
                 </form>
             </div>
             {% if pages %}
-            <div>
+            <div class="p-2">
                 <form action="selectpages" method="POST">
                 {% csrf_token %}
                     <h3>{{ pages.comicRef.book_title }}</h3>

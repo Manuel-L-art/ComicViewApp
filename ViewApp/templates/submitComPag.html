@@ -8,7 +8,7 @@
     {% include 'partials/navbar.html' %}
         <div class="container">
             <div class="row">
-                <div class="col border rounded-sm text-light">
+                <div class="col border rounded-sm text-light p-3">
                     <form action="submitPage" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                         <h4 class="text-light">Submit Comic Page</h4>
@@ -30,7 +30,7 @@
                         <button class="btn btn-primary">Submit</button>
                     </form>
                 </div>
-                <div class="col border rounded-sm text-light">
+                <div class="col border rounded-sm text-light p-3">
                     <form action="createComic" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                         <h4 class="text-light">Create Comic Book</h4>

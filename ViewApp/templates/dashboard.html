@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="container-fluid">
-            <div class="container "
+            <div class="container"
                 <h4>This is a placeholder for something way cooler. Maybe...</h4>
                 {% include 'partials/navbar.html' %}
                     {% if messages %}
@@ -19,8 +19,8 @@
                     </div>
                     {% endif %}
                 <div class="row">
-                    <div class="col border rounded-sm">
-                        <nav class="nav flex-column ">
+                    <div class="col border rounded-sm mt-3 mb-3">
+                        <nav class="nav flex-column mt-3 ">
                             <a class="nav-link alert-danger alert" href="delete">Delete a Comic Book</a>
                             <a class="nav-link alert-secondary alert" href="editpage">Edit User Profile</a>
                             <a class="nav-link alert-secondary alert" href="#">How-To's</a>
@@ -30,11 +30,11 @@
                     </div>
                     <div class="col">
                         {% if comics %}
-                        <div class="border rounded-sm">
+                        <div class="border rounded-sm mt-3 mb-3 p-3">
                             {% for comic in comics %}
-                            <h3><a href="viewpage/{{ comic.book_title }}/1">{{ comic.book_title }}</a></h3>
+                            <h3 class="border rounded-sm"><a href="viewpage/{{ comic.book_title }}/1"><strong>{{ comic.book_title }}</strong></a></h3>
                             <a href="viewpage/{{ comic.book_title }}/1">
-                                <img src="{{ comic.cover_art.url }}">
+                                <img class="p-3" src="{{ comic.cover_art.url }}">
                             </a>
                                 <div>
                                 {% for page in pages %}
